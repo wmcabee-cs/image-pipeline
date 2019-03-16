@@ -7,4 +7,4 @@ if [ -d $SCRIPT_DIR/build ]; then
 fi
 
 mkdir $SCRIPT_DIR/build
-zip -rjq $SCRIPT_DIR/build/function.zip $SCRIPT_DIR/src/ident_bounding_boxes
+zip -rjq $SCRIPT_DIR/build/function.zip $SCRIPT_DIR/src/ident_landmarks

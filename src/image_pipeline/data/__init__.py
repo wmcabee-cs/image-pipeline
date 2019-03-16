@@ -8,6 +8,12 @@ THIS_DIR = Path(os.path.abspath(os.path.dirname(__file__)))
 INFILE = THIS_DIR / 'test_images.csv'
 
 
+def get_test_images():
+    print("INFILE:", INFILE)
+    df = pd.read_csv(INFILE)
+    return df
+
+
 def upload_test_images():
     """Load local dataset to cortex"""
 
@@ -20,8 +26,8 @@ def upload_test_images():
     ds_builder.title('Bills test image dataset')
 
     # create cortex builder object from the csv file
-    print("INFILE:", INFILE)
-    df = pd.read_csv(INFILE)
+
+    df = get_test_images()
     ds_builder.from_df(df)
     ds = ds_builder.build()
     print(f">> uploaded test dataset using current_profile: "
