@@ -22,18 +22,6 @@ def read(*names, **kwargs):
     ).read()
 
 
-# Get skills datafiles to add to distribution
-package_d = Path('.').resolve()
-skills_d = (package_d / 'skills')
-data_files = ((Path(d).relative_to(package_d), files)
-              for d, folders, files in os.walk(skills_d)
-              if len(files) > 1
-              and '__pycache__' not in d
-              and '/src/' in d
-              )
-data_files = ((str(d), [str(d / f) for f in files]) for d, files in data_files)
-datafiles = list(data_files)
-pprint.pprint(datafiles)
 
 setup(
     name='image_pipeline',
@@ -45,7 +33,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
-    include_package_data=True,
+    #include_package_data=True,
     zip_safe=False,
     setup_requires=["pytest-runner", ],
     tests_require=["pytest", ],
@@ -70,5 +58,4 @@ setup(
         #    'nameless = nameless.cli:main',
         # ]
     },
-    data_files=datafiles,
 )

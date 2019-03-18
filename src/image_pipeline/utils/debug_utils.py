@@ -82,14 +82,10 @@ class prepend_syspath:
             pass
 
 
-
-SKILLS_D = Path('/Users/wmcabee/PycharmProjects/image_pipeline/skills')
-
-
-def load_skill_module(skill_name):
-    skill_d = SKILLS_D / skill_name / 'src'
+def load_skill_module(skills_d, name):
+    skill_d = skills_d / name / 'src'
 
     with prepend_syspath(path=str(skill_d)):
-        skill_path = f"{skill_name}.__main__"
+        skill_path = f"{name}.__main__"
         module = import_module(skill_path)
     return module
