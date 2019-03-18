@@ -1,1 +1,2 @@
-cortex-client
+#-e git+https://github.com/wmcabee-cs/image-pipeline#egg=image_pipeline
+git+git://github.com/wmcabee-cs/image-pipeline@master#egg=image_pipeline
