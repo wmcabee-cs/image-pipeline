@@ -25,16 +25,16 @@ class CortexAPI(object):
 
 
     @staticmethod
-    def encode_dataframe_message(df):
+    def encode_dataframe_message(df, name='df'):
         data = dill.dumps(df)
         data = base64.b64encode(data).decode()
-        payload = {'df': data}
+        payload = {name: data}
         output = OutputMessage(payload=payload, type_name="cortex/text").to_params()
         return output
 
     @staticmethod
-    def decode_dataframe_message(msg):
-        data = msg['payload']['df']
+    def decode_dataframe_message(msg, name='df'):
+        data = msg['payload'][name]
         data = base64.b64decode(data)
         df = dill.loads(data)
         return df

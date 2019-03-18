@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Dict, Optional, Callable, Any
 from dataclasses import dataclass
+from importlib import import_module
 
 DEFAULT_CONFIG_F = Path('~/.cortex/config').expanduser()
 
@@ -79,3 +80,16 @@ class prepend_syspath:
             sys.path.remove(self.path)
         except ValueError:
             pass
+
+
+
+SKILLS_D = Path('/Users/wmcabee/PycharmProjects/image_pipeline/skills')
+
+
+def load_skill_module(skill_name):
+    skill_d = SKILLS_D / skill_name / 'src'
+
+    with prepend_syspath(path=str(skill_d)):
+        skill_path = f"{skill_name}.__main__"
+        module = import_module(skill_path)
+    return module
