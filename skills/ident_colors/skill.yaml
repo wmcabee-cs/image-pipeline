@@ -1,7 +1,7 @@
 camel: 1.0.0
 name: bill/ident_colors
 title:  ident_colors Skill
-description: A test skill
+description: Identify colors
 inputs:
   - name: input1
     title: input1
@@ -20,7 +20,7 @@ outputs:
   - name: output1
     title: output1
     parameters:
-      - name: data
+      - name: df
         type: string
-        description: Dataframe of annotated images
+        description: Dataframe with color annotations
         required: true

@@ -1,26 +1,26 @@
 camel: 1.0.0
-name: default/ident_bounding_boxes
-title:  ident_bounding_boxes Skill
-description: Update this description --  ident_bounding_boxes
+name: bill/ident_landmarks
+title:  Identify landmarks
+description: Identifies landmarks in input image
 inputs:
   - name: input1
-    title: input1
+    title: Dataframe containing image_url
     parameters:
-      - name: text
+      - name: df
         type: string
-        description: Update this description
+        description: Dataframe containing image_url
         required: true
     routing:
       all:
-        action  : default/ident_bounding_boxes
+        action: bill/ident_landmarks
         runtime: cortex/functions
         output: output1
 
 outputs:
   - name: output1
-    title: output1
+    title: image with landmark information
     parameters:
-      - name: text
+      - name: df
         type: string
-        description: Update this description
+        description: Image including landmark annotation
         required: true

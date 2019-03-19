@@ -1,26 +1,26 @@
 camel: 1.0.0
-name: default/ident_bounding_boxes
-title:  ident_bounding_boxes Skill
-description: Update this description --  ident_bounding_boxes
+name: bill/ident_bounding_boxes
+title:  Identify Bounding Boxes
+description: Identify bounding boxes in image url
 inputs:
   - name: input1
-    title: input1
+    title: List of images
     parameters:
-      - name: text
+      - name: df
         type: string
-        description: Update this description
+        description: Dataframe containing image_url
         required: true
     routing:
       all:
-        action  : default/ident_bounding_boxes
+        action  : bill/ident_bounding_boxes
         runtime: cortex/functions
         output: output1
 
 outputs:
   - name: output1
-    title: output1
+    title: Dataframe including bounding box information
     parameters:
-      - name: text
+      - name: df
         type: string
-        description: Update this description
+        description: Dataframe with bounding box information
         required: true
