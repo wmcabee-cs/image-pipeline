@@ -6,6 +6,9 @@ from image_pipeline.utils.skill_utils import build_skill
 from image_pipeline.actions import (a_load_data, a_ident_colors, a_ident_bounding_boxes, a_ident_landmarks,
                                     a_write_json)
 
+from functools import partial
+from toolz import merge
+
 
 def build():
     pipeline = [
@@ -22,3 +25,10 @@ def run(pipeline, request):
     validate_request(schema=schemas.RequestParameters, request=request)
     df = run_pipeline(pipeline=pipeline, request=request)
     return df
+
+
+def map_merge(func, field, reader, kwargs=None):
+    if kwargs is not None:
+        func = partial(func, **kwargs)
+    reader = (merge(func(drec[field]), drec) for drec in reader)
+    return reader

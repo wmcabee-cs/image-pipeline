@@ -15,21 +15,21 @@ def a_load_data(request: Dict):
 
 
 # Identify colors
-def a_ident_colors(input: pd.DataFrame) -> pd.DatFrame:
+def a_ident_colors(input: pd.DataFrame) -> pd.DataFrame:
     return input.assign(dominant_colors=input.image_url.map(ml_module.ident_colors))
 
 
 # Identify bounding boxes
-def a_ident_bounding_boxes(input: pd.DataFrame) -> pd.DatFrame:
+def a_ident_bounding_boxes(input: pd.DataFrame) -> pd.DataFrame:
     return input.assign(bounding_boxes=input.image_url.map(ml_module.ident_bounding_boxes))
 
 
 # Identify landmarks
-def a_ident_landmarks(input: pd.DataFrame) -> pd.DatFrame:
+def a_ident_landmarks(input: pd.DataFrame) -> pd.DataFrame:
     return input.assign(landmarks=input.image_url.map(ml_module.ident_landmarks))
 
 
-def a_write_json(input: pd.DataFrame, request: Dict) -> pd.DatFrame:
+def a_write_json(input: pd.DataFrame, request: Dict) -> pd.DataFrame:
     outfile = request['outfile']
     input.to_json(outfile, orient='records', lines=True)
     print('wrote %s' % str(outfile))
