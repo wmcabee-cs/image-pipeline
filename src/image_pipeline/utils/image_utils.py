@@ -1,21 +1,12 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-from itertools import zip_longest
+from itertools import zip_longest, starmap
 import requests
 import numpy as np
 from PIL import Image
 import io
 
-
-def _show_image(ax, image):
-    if image is None:
-        ax.set_visible(False)
-        return
-    ax.imshow(image['_im'])
-
-    # add bounding box rectange
-    rect = patches.Rectangle(linewidth=2, edgecolor='r', facecolor='none', **image['_bounding_box'])
-    ax.add_patch(rect)
+from image_pipeline.utils.pipeline_utils import map_merge
 
 
 def vertices2patch(vertices):
@@ -29,27 +20,46 @@ def vertices2patch(vertices):
             'height': y_max - y_min}
 
 
-def prep_for_matplotlib(image):
+def _prep_for_matplotlib(image):
     # Add image and image shape to object
     print(f">> fetching image {image['image_url']}")
     r = requests.get(image['image_url'])
     r.raise_for_status()
     im = np.array(Image.open(io.BytesIO(r.content)), dtype=np.uint8)
-    image['_im'] = im
-    image['_shape'] = im.shape
 
     # convert bounding box into format required by matplotlib
-    bounding_box = vertices2patch(image['boundingPoly'])
-    image['_bounding_box'] = bounding_box
-    return image
+    bounding_box = vertices2patch(image['bounding_box'])
+    output = {'im': im, 'bounding_box': bounding_box}
+    return output
 
 
-def show_images(image_list, columns=3, figsize=[12, 12]):
-    image_list = list(map(prep_for_matplotlib, image_list))
-    rows = (len(image_list) // columns) + 1
+def _show_image(ax, image):
+    if image is None:
+        ax.set_visible(False)
+        return
+    ax.imshow(image['im'])
 
+    # add bounding box rectangle
+    rect = patches.Rectangle(linewidth=2, edgecolor='r', facecolor='none', **image['bounding_box'])
+    ax.add_patch(rect)
+
+
+DEFAULT_FIGURE_SIZE = [12, 12]
+
+
+def show_images(image_list, columns=3, figsize=DEFAULT_FIGURE_SIZE):
+    # prepare display dataset
+    reader = map(_prep_for_matplotlib, image_list)
+    images = list(reader)
+
+    # Create a grid of matplotlib axes
+    rows = (len(images) // columns) + 1
     fig, axes = plt.subplots(rows, columns, figsize=figsize)
     axes = axes.ravel()
-    reader = zip_longest(axes, image_list)
-    for ax, image in reader:
-        _show_image(ax=ax, image=image)
+
+    # Render the images into the axes
+    reader = images
+    reader = zip_longest(axes, reader)
+    reader = starmap(_show_image, reader)
+    for _ in reader:
+        pass

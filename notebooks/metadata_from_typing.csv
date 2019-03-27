@@ -1,0 +1,30 @@
+parameter_name,function,input_output,parameter_sname,parameter_type,origin,args,type_name,is_iterable,is_sequence,is_union,none_args
+ident_landmarks,ident_landmarks,out,ident_landmarks,typing.Any,,,,False,False,False,
+ident_landmarks.image_url,ident_landmarks,in,image_url,<class 'str'>,,,,False,False,False,
+ident_crop_hints,ident_crop_hints,out,ident_crop_hints,<class 'image_pipeline.google_api_funcs.functions.CropHintAnnotation'>,,,,False,False,False,
+ident_crop_hints.image_url,ident_crop_hints,in,image_url,<class 'str'>,,,,False,False,False,
+ident_crop_hints.aspect_ratios,ident_crop_hints,in,aspect_ratios,"typing.Union[float, NoneType]",typing.Union,"(<class 'float'>, <class 'NoneType'>)",,False,False,True,1.0
+ident_dominant_colors,ident_dominant_colors,out,ident_dominant_colors,<class 'image_pipeline.google_api_funcs.functions.DominantColorAnnotation'>,,,,False,False,False,
+ident_dominant_colors.image_url,ident_dominant_colors,in,image_url,<class 'str'>,,,,False,False,False,
+ident_dominant_colors.limit,ident_dominant_colors,in,limit,"typing.Union[int, NoneType]",typing.Union,"(<class 'int'>, <class 'NoneType'>)",,False,False,True,1.0
+func_w_no_annotations,func_w_no_annotations,out,func_w_no_annotations,typing.Any,,,,False,False,False,
+func_w_no_annotations.a,func_w_no_annotations,in,a,typing.Any,,,,False,False,False,
+func_w_no_params,func_w_no_params,out,func_w_no_params,typing.Any,,,,False,False,False,
+func_w_optional_annotations,func_w_optional_annotations,out,func_w_optional_annotations,"typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]",typing.Union,"(<class 'image_pipeline.google_api_funcs.functions.CropHintAnnotation'>, <class 'NoneType'>)",,False,False,True,1.0
+func_w_optional_annotations.a,func_w_optional_annotations,in,a,"typing.Union[int, NoneType]",typing.Union,"(<class 'int'>, <class 'NoneType'>)",,False,False,True,1.0
+func_w_optional_annotations.b,func_w_optional_annotations,in,b,"typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]",typing.Union,"(<class 'image_pipeline.google_api_funcs.functions.CropHintAnnotation'>, <class 'NoneType'>)",,False,False,True,1.0
+func_w_lists,func_w_lists,out,func_w_lists,typing.List[image_pipeline.google_api_funcs.functions.CropHintAnnotation],<class 'list'>,"(<class 'image_pipeline.google_api_funcs.functions.CropHintAnnotation'>,)",List,True,True,False,0.0
+func_w_lists.a,func_w_lists,in,a,typing.List[int],<class 'list'>,"(<class 'int'>,)",List,True,True,False,0.0
+func_w_lists.b,func_w_lists,in,b,typing.List[int],<class 'list'>,"(<class 'int'>,)",List,True,True,False,0.0
+func_w_optional_elements,func_w_optional_elements,out,func_w_optional_elements,"typing.List[typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]]",<class 'list'>,"(typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType],)",List,True,True,False,0.0
+func_w_optional_elements.a,func_w_optional_elements,in,a,"typing.List[typing.Union[int, NoneType]]",<class 'list'>,"(typing.Union[int, NoneType],)",List,True,True,False,0.0
+func_w_optional_elements.b,func_w_optional_elements,in,b,"typing.List[typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]]",<class 'list'>,"(typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType],)",List,True,True,False,0.0
+func_w_optional_lists,func_w_optional_lists,out,func_w_optional_lists,"typing.Union[typing.List[image_pipeline.google_api_funcs.functions.CropHintAnnotation], NoneType]",typing.Union,"(typing.List[image_pipeline.google_api_funcs.functions.CropHintAnnotation], <class 'NoneType'>)",,False,False,True,1.0
+func_w_optional_lists.a,func_w_optional_lists,in,a,"typing.Union[typing.List[int], NoneType]",typing.Union,"(typing.List[int], <class 'NoneType'>)",,False,False,True,1.0
+func_w_optional_lists.b,func_w_optional_lists,in,b,"typing.Union[typing.List[int], NoneType]",typing.Union,"(typing.List[int], <class 'NoneType'>)",,False,False,True,1.0
+func_w_optional_iterable,func_w_optional_iterable,out,func_w_optional_iterable,"typing.Iterable[typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]]",<class 'collections.abc.Iterable'>,"(typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType],)",Iterable,True,False,False,0.0
+func_w_optional_iterable.a,func_w_optional_iterable,in,a,"typing.Iterable[typing.Union[int, NoneType]]",<class 'collections.abc.Iterable'>,"(typing.Union[int, NoneType],)",Iterable,True,False,False,0.0
+func_w_optional_iterable.b,func_w_optional_iterable,in,b,"typing.Iterable[typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]]",<class 'collections.abc.Iterable'>,"(typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType],)",Iterable,True,False,False,0.0
+func_w_optional_sequence,func_w_optional_sequence,out,func_w_optional_sequence,"typing.Iterable[typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]]",<class 'collections.abc.Iterable'>,"(typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType],)",Iterable,True,False,False,0.0
+func_w_optional_sequence.a,func_w_optional_sequence,in,a,"typing.Sequence[typing.Union[int, NoneType]]",<class 'collections.abc.Sequence'>,"(typing.Union[int, NoneType],)",Sequence,True,True,False,0.0
+func_w_optional_sequence.b,func_w_optional_sequence,in,b,"typing.Sequence[typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType]]",<class 'collections.abc.Sequence'>,"(typing.Union[image_pipeline.google_api_funcs.functions.CropHintAnnotation, NoneType],)",Sequence,True,True,False,0.0

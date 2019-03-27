@@ -5,12 +5,12 @@ import pandas as pd
 import cortex
 
 THIS_DIR = Path(os.path.abspath(os.path.dirname(__file__)))
-INFILE = THIS_DIR / 'test_images.csv'
 
 
 def get_test_images():
-    print("INFILE:", INFILE)
-    df = pd.read_csv(INFILE)
+    infile = THIS_DIR / 'test_images.csv'
+    print("image__url test dataset:", infile)
+    df = pd.read_csv(infile)
     return df
 
 
