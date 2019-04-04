@@ -18,7 +18,10 @@ def runit(func: Callable, **kwargs):
         ret = func(**kwargs)
         return ret
     except StopEarlyException as e:
-        return e.args
+        ret = tuple(e.args)
+        if len(ret) == 1:
+            return ret[0]
+        return ret
     except Exception as e:
         print('Exception:', e)
         raise
@@ -53,9 +56,12 @@ def call_cortex_function(afunc: Callable,
                          payload: Mapping[str, Any],
                          profile_name: Optional[str] = None,
                          params: Mapping[str, Any] = None,
-                         properties: Mapping[str, Any] = None) -> Any:
+                         properties: Mapping[str, Any] = None,
+                         kwargs: Optional[Mapping] = None) -> Any:
     if properties is None:
         properties = {}
+    if kwargs is None:
+        kwargs = {}
 
     profile = get_cortex_profile(name=profile_name)
 
@@ -78,10 +84,12 @@ def call_cortex_function(afunc: Callable,
         merged_params = merge(merged_params, params)
 
     try:
-        return afunc(params=merged_params)
+        return afunc(params=merged_params, **kwargs)
     except StopEarlyException as e:
-        print('stopped early ...')
-        return e.args
+        ret = tuple(e.args)
+        if len(ret) == 1:
+            return ret[0]
+        return ret
 
 
 def load_cortex_action(actions_d, action_name):
